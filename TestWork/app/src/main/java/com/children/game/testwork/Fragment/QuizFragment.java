@@ -118,4 +118,10 @@ public class QuizFragment extends BaseClass {
         super.onStart();
         if (flag == true) showDialog(message);
     }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        stopSound(mediaPlayer);
+    }
 }

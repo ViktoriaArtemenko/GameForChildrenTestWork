@@ -2,7 +2,6 @@ package com.children.game.testwork.Fragment;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
-import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -48,13 +47,6 @@ public class QuizFragment extends BaseClass {
         return view;
     }
 
-    public void playSound(String nameResources) {   //Проигрываем музыку
-        stopSound();
-        mediaPlayer = MediaPlayer.create(getActivity(), getIdResources(nameResources, "raw"));
-        mediaPlayer.setOnPreparedListener(this);
-        mediaPlayer.setOnCompletionListener(this);
-    }
-
     public void initArray(int buttonCount) {
         if (buttonCount > buttonCountMiddle)
             gridLayout.setColumnCount(buttonCountMiddle);
@@ -93,13 +85,6 @@ public class QuizFragment extends BaseClass {
                         });
         alertDialog = builder.create();
         alertDialog.show();
-    }
-
-    public void stopSound() {
-        try {
-            if (mediaPlayer != null) mediaPlayer.stop();
-        } catch (Exception e) {
-        }
     }
 
     @Override

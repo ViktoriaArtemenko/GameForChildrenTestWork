@@ -1,6 +1,5 @@
 package com.children.game.testwork.Fragment;
 
-import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,8 +11,8 @@ import com.children.game.testwork.R;
 
 public class ImageListeningFragment extends BaseClass {
 
-    protected String transportOrAnimal;
-    protected String[] transportArray;
+    private String transportOrAnimal;
+    private String[] transportArray;
     private int columnCount = 4;
 
     @Override
@@ -51,13 +50,8 @@ public class ImageListeningFragment extends BaseClass {
 
     @Override
     public void onClick(View v) {
-        try {
-            if (mediaPlayer != null) mediaPlayer.stop();
-        } catch (Exception e) {
-        }
-        mediaPlayer = MediaPlayer.create(getActivity(), getIdResources((String) v.getTag(), "raw"));
-        mediaPlayer.setOnPreparedListener(this);
-        mediaPlayer.setOnCompletionListener(this);
+        stopSound();
+        playSound((String) v.getTag());
     }
 
     public String getTransportOrAnimal() {

@@ -16,7 +16,7 @@ abstract public class BaseClass extends Fragment implements View.OnClickListener
     protected GridLayout gridLayout;
     protected Button button;
 
-    public void generalOfIconButton(String[] array) {  //Создаем кнопки с изображением зверей или
+    protected void generalOfIconButton(String[] array) {  //Создаем кнопки с изображением зверей или
         for (int i = 0; i < array.length; i++) {            //транспорта
             button = new Button(getContext());
             button.setBackgroundResource(getIdResources(array[i], "mipmap"));
@@ -26,7 +26,7 @@ abstract public class BaseClass extends Fragment implements View.OnClickListener
         }
     }
 
-    public int getIdResources(String nameOfResources, String defType) {  //Узнаем id необходимого
+    protected int getIdResources(String nameOfResources, String defType) {  //Узнаем id необходимого
         int id, randomCheckout;          //ресурса с помощью имени ресурса
         String name;
         name = nameOfResources + "_1";
@@ -39,6 +39,23 @@ abstract public class BaseClass extends Fragment implements View.OnClickListener
         }
         id = getResources().getIdentifier(nameOfResources, defType, getContext().getPackageName());
         return id;
+    }
+
+    protected void playSound(String nameResources) {   //Проигрываем музыку
+        stopSound();
+        mediaPlayer = MediaPlayer.create(getActivity(), getIdResources(nameResources, "raw"));
+        mediaPlayer.setOnPreparedListener(this);
+        mediaPlayer.setOnCompletionListener(this);
+    }
+
+    protected void stopSound() {
+        try {
+            if (mediaPlayer != null) {
+                mediaPlayer.stop();
+                mediaPlayer.release();
+            }
+        } catch (Exception e) {
+        }
     }
 
     @Override

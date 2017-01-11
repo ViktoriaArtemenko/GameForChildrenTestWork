@@ -7,6 +7,7 @@ import android.widget.GridLayout;
 
 import com.children.game.testwork.Fragment.ImageListeningFragment;
 import com.children.game.testwork.Fragment.MenuListeningFragment;
+import com.children.game.testwork.JavaClass.BaseClass;
 import com.children.game.testwork.R;
 
 public class ListeningActivity extends AppCompatActivity implements MenuListeningFragment.
@@ -15,6 +16,7 @@ public class ListeningActivity extends AppCompatActivity implements MenuListenin
     private MenuListeningFragment menuListeningFragment;
     private FragmentTransaction fragmentTransaction;
     private GridLayout gridLayout;
+    private BaseClass baseClass = new BaseClass();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,11 +48,7 @@ public class ListeningActivity extends AppCompatActivity implements MenuListenin
             fragmentTransaction = getSupportFragmentManager().beginTransaction();
             fragmentTransaction.replace(R.id.fragment_container, menuListeningFragment);
             fragmentTransaction.commit();
-            try {
-                if (imageListeningFragment.getMediaPlayer() != null) imageListeningFragment.
-                        getMediaPlayer().stop();
-            } catch (Exception e) {
-            }
+            baseClass.stopSound(imageListeningFragment.getMediaPlayer());
         }
     }
 

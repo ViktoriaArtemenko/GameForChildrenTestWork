@@ -8,7 +8,7 @@ import android.widget.GridLayout;
 
 import java.util.Random;
 
-abstract public class BaseClass extends Fragment implements View.OnClickListener,
+public class BaseClass extends Fragment implements View.OnClickListener,
         MediaPlayer.OnPreparedListener, MediaPlayer.OnCompletionListener {
 
     protected String[] animalArray;
@@ -42,13 +42,13 @@ abstract public class BaseClass extends Fragment implements View.OnClickListener
     }
 
     protected void playSound(String nameResources) {   //Проигрываем музыку
-        stopSound();
+        stopSound(mediaPlayer);
         mediaPlayer = MediaPlayer.create(getActivity(), getIdResources(nameResources, "raw"));
         mediaPlayer.setOnPreparedListener(this);
         mediaPlayer.setOnCompletionListener(this);
     }
 
-    protected void stopSound() {
+    public void stopSound(MediaPlayer mediaPlayer) {
         try {
             if (mediaPlayer != null) {
                 mediaPlayer.stop();
@@ -70,5 +70,9 @@ abstract public class BaseClass extends Fragment implements View.OnClickListener
 
     public MediaPlayer getMediaPlayer() {
         return mediaPlayer;
+    }
+
+    @Override
+    public void onClick(View v) {
     }
 }

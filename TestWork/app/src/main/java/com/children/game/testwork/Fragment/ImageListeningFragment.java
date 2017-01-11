@@ -50,7 +50,7 @@ public class ImageListeningFragment extends BaseClass {
 
     @Override
     public void onClick(View v) {
-        stopSound();
+        stopSound(mediaPlayer);
         playSound((String) v.getTag());
     }
 

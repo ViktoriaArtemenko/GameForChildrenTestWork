@@ -89,7 +89,7 @@ public class QuizFragment extends BaseClass {
 
     @Override
     public void onClick(View v) {
-        stopSound();
+        stopSound(mediaPlayer);
         if (buttonCount == 0) buttonCount = buttonCountMin;
         if (v.getTag() == nameMusicResources) {
             message = "Вірно";
